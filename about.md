@@ -4,12 +4,13 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+Data scientist, ex-biologist, occasional writer and DJ. Trying to make sense of it all.
 
 ### More Information
 
-A place to include any other types of information that you'd like to include about yourself.
+[a lot of my writing](http://www.factmag.com/author/andrew-friedman/)  
+[mixes and remixes](https://soundcloud.com/skinny412)
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+afriedman412 (at) gmail (dot) com
