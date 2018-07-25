@@ -109,7 +109,7 @@ pd.DataFrame(nulls)
 ```
 
 | features | # of null values |
-| --- | --- |
+| :---: | :---: |
 | Lot Frontage | 330 |
 | Alley | 1911 |
 | Mas Vnr Type | 22 |
