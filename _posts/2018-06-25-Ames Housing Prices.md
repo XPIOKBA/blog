@@ -12,16 +12,7 @@ In this notebook, I will clean and explore the data, then briefly optimize a han
 
 # Cleaning the Data
 ---
-
-```python
-# importing the training data
-df = pd.read_csv('train.csv')
-```
-
-81 columns
-
 Fixing typos found earlier
-
 
 ```python
 df.loc[1699,'Garage Yr Blt'] = 2007
@@ -29,9 +20,8 @@ df.loc[1712,'Garage Type'] = np.NaN
 df.loc[1712,'Garage Cars'] = 0
 df.loc[1712,'Garage Area'] = 0
 ```
-
+<br>
 Dropping 'Id' and 'PID' columns, which will not be needed
-
 
 ```python
 df.drop(['Id','PID'], axis=1, inplace=True)
@@ -138,17 +128,21 @@ pd.DataFrame(nulls)
 | Misc Feature | 1986 |
 | Garage Age | 114 |
 
-Given that we only have 2051 rows, dropping 'Alley', 'Fence' and 'Misc Feature'
+Given that we only have 2051 rows, dropping 'Alley', 'Fence' and 'Misc Feature'.
 
 ```python
 df.drop(['Alley', 'Fence', 'Misc Feature'], axis=1, inplace=True)
 ```
+
+<br>
 
 Filling in missing 'Garage Age' values with same from 'House Age'.
 
 ```python
 df['Garage Age'].fillna(df['House Age'], inplace=True)
 ```
+
+<br>
 
 Imputing missing values for remaining features with column means for numericals and 'Unknown' for categoricals.
 
@@ -177,9 +171,7 @@ Convert unordered categorical features to numerical by making dummy columns
 df_dummies = pd.get_dummies(df)
 ```
 
-
 <br>
-
 
 # Exploring the Data
 ---
@@ -189,29 +181,31 @@ Some visualizations and observations about the data. (Sometimes looking at the p
 
 ![png](../images/ames_notebook_files/ames_notebook_28_0.png)
 
+<br>
 
 'Sale Price' varies quite a bit by 'Neighborhood'.
 
-
 ![png](../images/ames_notebook_files/ames_notebook_29_0.png)
+
+<br>
 
 Correlation between 'Sale Price' and 'Lot Area' makes sense, as does an inverse correlation between 'Sale Price' and 'House Age'. Surprisingly, 'Overall Cond' and 'Sale Price' seem barely related.
 
 ![png](../images/ames_notebook_files/ames_notebook_30_0.png)
 
+<br>
 
 '1st Fl SF' looks affected by some outliers. '2nd Flr SF' and 'Garage Area' both look affected by the zero values, presumably from houses with only one story or no garage.
 
-
 ![png](../images/ames_notebook_files/ames_notebook_32_0.png)
+
+<br>
 
 '2nd Flr SF' and 'Garage Area' with the zero value removed.
 
 ![png](../images/ames_notebook_files/ames_notebook_34_0.png)
 
-
 <br>
-
 
 # Modeling and Predictions
 ---
@@ -246,7 +240,6 @@ pad = Pipeline([
 
 ### Splitting the data for validation
 
-
 ```python
 X = df_dummies.drop('SalePrice', axis=1)
 y = df_dummies['SalePrice']
@@ -268,6 +261,8 @@ def RMSE_score(model, X, y, cv=5):
     return (np.mean(cross_val_score(prf, X_test, y_test, scoring='neg_mean_squared_error', cv=cv))*-1)**0.5
 ```
 
+<br>
+
 Scoring all three models using _RMSE_score_...
 
 ```python
@@ -285,6 +280,8 @@ for m in models:
     print('')
 ```
 
+<br>
+
 The first round of scores: 
 
     Random Forest Regressor RMSE:
@@ -296,6 +293,8 @@ The first round of scores:
     AdaBoost Regressor RMSE:
     29424.7745198
     
+
+<br>
 
 A graphical look ... every model returns a score a shade below 30000.
 
@@ -310,9 +309,13 @@ Here's '1st Fl SF' converted to log ...
 
 ![png](../images/ames_notebook_files/ames_notebook_48_0.png)
 
+<br>
+
 And here's 'Lot Area'.
 
 ![png](../images/ames_notebook_files/ames_notebook_49_0.png)
+
+<br>
 
 Converting both to log scale and re-scoring models....
 
@@ -348,15 +351,16 @@ Did the scores improve?
     28461.5800328
     
 
-Marginal improvements in all models. (Remember that RMSE measures error, so we are trying to minimize the score.)
+<br>
 
+Marginal improvements in all models. (Remember that RMSE measures error, so we are trying to minimize the score.)
 
 ![png](../images/ames_notebook_files/ames_notebook_56_0.png)
 
 <br>
 
 
-# Modeling Tuning
+# Model Tuning
 ---
 Instead of tweaking the data, let's see if tuning our models brings the score down across the board. Running a few GridSearches to optimize our three. models.
 
@@ -389,49 +393,6 @@ X_train, X_test, y_train, y_test = train_test_split(X, y)
 gs_rfr.fit(X_train, y_train)
 ```
 
-
-
-
-    GridSearchCV(cv=5, error_score='raise',
-           estimator=Pipeline(memory=None,
-         steps=[('ss', StandardScaler(copy=True, with_mean=True, with_std=True)), ('rfr', RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=None,
-               max_features='auto', max_leaf_nodes=None,
-               min_impurity_decrease=0.0, min_impurity_split=N...imators=10, n_jobs=1,
-               oob_score=False, random_state=None, verbose=0, warm_start=False))]),
-           fit_params=None, iid=True, n_jobs=1,
-           param_grid={'rfr__n_estimators': [10, 30, 50, 70, 90], 'rfr__max_features': [0.5, 'sqrt', 'log2', 'auto'], 'rfr__min_samples_split': [2, 3, 5, 8]},
-           pre_dispatch='2*n_jobs', refit=True, return_train_score='warn',
-           scoring='neg_mean_squared_error', verbose=0)
-
-
-
-
-```python
-gs_rfr.best_params_
-```
-
-
-
-
-    {'rfr__max_features': 0.5,
-     'rfr__min_samples_split': 5,
-     'rfr__n_estimators': 50}
-
-
-
-
-```python
-(-gs_rfr.best_score_)**0.5
-```
-
-
-
-
-    26035.783282401539
-
-
-
-
 ```python
 model_scores['scores_tuned'] = []
 
@@ -440,89 +401,15 @@ model_scores['scores_tuned'].append(RMSE)
 print(RMSE)
 ```
 
+    tuned Random Forest RMSE:
     29491.6725595
 
+Actually worse than the initial score of around 29000.
+
+<br>
 
 ### SVR
-Can we improve SVR by using a different kernel and adjusting 'C'?
-
-
-```python
-# set params to search over
-params = {
-        'svr__kernel':['linear', 'poly', 'rbf', 'sigmoid'],
-        'svr__C':[0.001, 0.01, 0.1, 1, 10]
-        }
-
-# instantiate Grid Search
-gs_svr = GridSearchCV(psv, param_grid=params, cv=5, scoring='neg_mean_squared_error')
-```
-
-
-```python
-X = df_dummies.drop('SalePrice', axis=1)
-y = df_dummies['SalePrice']
-
-X_train, X_test, y_train, y_test = train_test_split(X, y)
-```
-
-
-```python
-# fitting the Grid Search
-gs_svr.fit(X_train, y_train)
-```
-
-
-
-
-    GridSearchCV(cv=5, error_score='raise',
-           estimator=Pipeline(memory=None,
-         steps=[('ss', StandardScaler(copy=True, with_mean=True, with_std=True)), ('svr', SVR(C=1.0, cache_size=200, coef0=0.0, degree=3, epsilon=0.1, gamma='auto',
-      kernel='linear', max_iter=-1, shrinking=True, tol=0.001, verbose=False))]),
-           fit_params=None, iid=True, n_jobs=1,
-           param_grid={'svr__kernel': ['linear', 'poly', 'rbf', 'sigmoid'], 'svr__C': [0.001, 0.01, 0.1, 1, 10]},
-           pre_dispatch='2*n_jobs', refit=True, return_train_score='warn',
-           scoring='neg_mean_squared_error', verbose=0)
-
-
-
-
-```python
-# checking best params
-gs_svr.best_params_
-```
-
-
-
-
-    {'svr__C': 10, 'svr__kernel': 'linear'}
-
-
-
-
-```python
-(-gs_svr.best_score_)**0.5
-```
-
-
-
-
-    38420.215891234933
-
-
-
-
-```python
-# new score?
-RMSE = RMSE_score(gs_svr, X_test, y_test)
-print(RMSE)
-```
-
-    35289.7487668
-
-
-What if we adjust 'C' and 'gamma'?
-
+Can we improve SVR by using a different kernel and adjusting 'C' and 'gamma'?
 
 ```python
 # resetting kernel in Pipeline
@@ -541,7 +428,6 @@ params = {
 gs_svr = GridSearchCV(psv, param_grid=params, cv=5, scoring='neg_mean_squared_error')
 ```
 
-
 ```python
 X = df_dummies.drop('SalePrice', axis=1)
 y = df_dummies['SalePrice']
@@ -552,33 +438,6 @@ X_train, X_test, y_train, y_test = train_test_split(X, y)
 gs_svr.fit(X_train, y_train)
 ```
 
-
-
-
-    GridSearchCV(cv=5, error_score='raise',
-           estimator=Pipeline(memory=None,
-         steps=[('ss', StandardScaler(copy=True, with_mean=True, with_std=True)), ('svr', SVR(C=1.0, cache_size=200, coef0=0.0, degree=3, epsilon=0.1, gamma='auto',
-      kernel='linear', max_iter=-1, shrinking=True, tol=0.001, verbose=False))]),
-           fit_params=None, iid=True, n_jobs=1,
-           param_grid={'svr__C': [0.001, 0.01, 0.1, 1, 10], 'svr__gamma': [0.001, 0.01, 0.1, 1]},
-           pre_dispatch='2*n_jobs', refit=True, return_train_score='warn',
-           scoring='neg_mean_squared_error', verbose=0)
-
-
-
-
-```python
-gs_svr.best_params_
-```
-
-
-
-
-    {'svr__C': 10, 'svr__gamma': 0.001}
-
-
-
-
 ```python
 # new score?
 RMSE = RMSE_score(gs_svr, X_test, y_test)
@@ -586,12 +445,15 @@ model_scores['scores_tuned'].append(RMSE)
 print(RMSE)
 ```
 
+    tuned SVR RMSE:   
     34941.5142229
 
+As with Random Forest, no improvement from tuning the model.
+
+<br>
 
 ### AdaBoost
 Tweaking 'n_estimators', 'loss' and 'learning_rate'.
-
 
 ```python
 # set params to search over
@@ -605,7 +467,6 @@ params = {
 gs_ada = GridSearchCV(pad, param_grid=params, cv=5, scoring='neg_mean_squared_error')
 ```
 
-
 ```python
 X = df_dummies.drop('SalePrice', axis=1)
 y = df_dummies['SalePrice']
@@ -613,51 +474,9 @@ y = df_dummies['SalePrice']
 X_train, X_test, y_train, y_test = train_test_split(X, y)
 ```
 
-
 ```python
 gs_ada.fit(X_train, y_train)
 ```
-
-
-
-
-    GridSearchCV(cv=5, error_score='raise',
-           estimator=Pipeline(memory=None,
-         steps=[('ss', StandardScaler(copy=True, with_mean=True, with_std=True)), ('ada', AdaBoostRegressor(base_estimator=None, learning_rate=1.0, loss='linear',
-             n_estimators=50, random_state=None))]),
-           fit_params=None, iid=True, n_jobs=1,
-           param_grid={'ada__n_estimators': [50, 75, 100], 'ada__loss': ['linear', 'square', 'exponential'], 'ada__learning_rate': [0.5, 1, 1.5]},
-           pre_dispatch='2*n_jobs', refit=True, return_train_score='warn',
-           scoring='neg_mean_squared_error', verbose=0)
-
-
-
-
-```python
-gs_ada.best_params_
-```
-
-
-
-
-    {'ada__learning_rate': 0.5,
-     'ada__loss': 'exponential',
-     'ada__n_estimators': 50}
-
-
-
-
-```python
-(-gs_ada.best_score_)**0.5
-```
-
-
-
-
-    34156.274354159665
-
-
-
 
 ```python
 RMSE = RMSE_score(gs_ada, X_test, y_test)
@@ -665,36 +484,19 @@ model_scores['scores_tuned'].append(RMSE)
 print(RMSE)
 ```
 
+    tuned AdaBoost RMSE: 
     31379.466642
 
+<br>
 
-### How'd we do?
-Let's compare the three rounds of scores graphically.
-
-
-```python
-# converting score data for graphing
-scores = pd.DataFrame(model_scores)
-scores = pd.melt(scores, id_vars='model', value_vars=['scores_1', 'scores_2', 'scores_tuned'], value_name='RMSE_score', var_name='modeling round')
-```
-
-
-```python
-plt.figure(figsize=(12,8))
-plt.title(s='5x Cross-Validated RMSE (Test scores)', size=17)
-sns.barplot(data=scores, x='RMSE_score', y='model', hue='modeling round', palette=pal)
-plt.ylabel('')
-plt.xlabel('RMSE')
-plt.margins(0.2);
-```
-
+# Results of tuned models
+---
+Tuning actually made all three models worse.
 
 ![png](../images/ames_notebook_files/ames_notebook_86_0.png)
 
-
-Tuning actually made all three models worse.
-
----
+<br>
 
 # Interpretation and Conclusion
+---
 The benefits of model tuning entirely depend upon picking the right parameters to adjust over the right range of values. In this case, I probably could have chosen better.
