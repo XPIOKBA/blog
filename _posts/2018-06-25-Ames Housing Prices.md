@@ -13,7 +13,7 @@ In this notebook, I will clean and explore the data, then briefly optimize a han
 ### Import Packages
 
 
-```
+```python
 import numpy as np
 import scipy.stats as stats
 import seaborn as sns
