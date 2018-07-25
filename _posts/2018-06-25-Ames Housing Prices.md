@@ -37,6 +37,8 @@ Dropping 'Id' and 'PID' columns, which will not be needed
 df.drop(['Id','PID'], axis=1, inplace=True)
 ```
 
+<br>
+
 ### Converting categorical features to numerical features
 A number of categorical features are clearly ordered, with qualitative values like 'Good', 'Fair', 'Poor', etc. These are converted into ordered, numerical equivalents using a dictionary of keys.
 
@@ -71,6 +73,8 @@ for c in to_cat:
     df[p] = df[c].map(lambda x: cat_key[num_key[c]][x])
 ```
 
+<br>
+
 ### Converting years to ages
 A number of features list years (of construction, renovation, etc). To better standardize the data, they are converted to ages. 
 
@@ -90,12 +94,16 @@ for n, v in ager.items():
     df[v] = df[n].map(lambda x: 2018-x)
 ```
 
+<br>
+
 ### Removing converted features
 
 
 ```python
 df.drop([c for c in to_age + to_cat], axis=1, inplace=True)
 ```
+
+<br>
 
 ### Filling in missing values
 
@@ -160,6 +168,8 @@ for c in nulls['col']:
         df[c].fillna(df[c].mean(), inplace=True)
 ```
 
+<br>
+
 ### Dummy columns
 Convert unordered categorical features to numerical by making dummy columns
 
@@ -210,6 +220,7 @@ Predicting 'Sale Price' using three different algorithms, all from Scikit Learn:
 - [AdaBoost Regressor](https://xgboost.readthedocs.io/en/latest/)
 - [Support Vector Regressor](http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html)
 
+<br>
 
 ### Creating a pipeline to combine standard scaling with the regressor
 
@@ -231,6 +242,8 @@ pad = Pipeline([
 
 ```
 
+<br>
+
 ### Splitting the data for validation
 
 
@@ -240,6 +253,8 @@ y = df_dummies['SalePrice']
 
 X_train, X_test, y_train, y_test = train_test_split(X, y)
 ```
+
+<br>
 
 ### Initial scores
 This project was originally done in the context of a Kaggle competition which used Root Mean Squared Error (RMSE) for scoring, so that is the metric I'm using here.
@@ -286,65 +301,20 @@ A graphical look ... every model returns a score a shade below 30000.
 
 ![png](../images/ames_notebook_files/ames_notebook_45_0.png)
 
-
+<br>
 
 ### Improving the data?
 Looking at the scatter plots above, a couple of the features look like they could benefit from converting to a log scale.
 
-
-```python
-plt.figure(figsize=(16,5))
-
-plt.subplot(1,2,1)
-sns.regplot(data=df, x='1st Flr SF',y='SalePrice', color=pal[1],
-               line_kws={'color':'black'}, scatter_kws={'alpha':a})
-plt.xlabel(s='1st Flr SF')
-plt.ylabel(s='Sale Price ($)')
-
-plt.subplot(1,2,2)
-sns.regplot(data=df, x=np.log(d['1st Flr SF']),y='SalePrice', color=pal[1],
-               line_kws={'color':'black'}, scatter_kws={'alpha':a})
-plt.xlabel(s='Log 1st Flr SF')
-plt.ylabel(s='Sale Price ($)');
-```
-
+Here's '1st Fl SF' converted to log ...
 
 ![png](../images/ames_notebook_files/ames_notebook_48_0.png)
 
-
-
-```python
-plt.figure(figsize=(16,5))
-
-plt.subplot(1,2,1)
-sns.regplot(data=df, x='Lot Area',y='SalePrice', color=pal[2],
-               line_kws={'color':'black'}, scatter_kws={'alpha':a})
-plt.xlabel(s='Lot Area')
-plt.ylabel(s='Sale Price ($)')
-
-plt.subplot(1,2,2)
-sns.regplot(data=df, x=np.log(df['Lot Area']),y='SalePrice', color=pal[2],
-               line_kws={'color':'black'}, scatter_kws={'alpha':a})
-plt.xlabel(s='Log Lot Area')
-plt.ylabel(s='Sale Price ($)');
-```
-
+And here's 'Lot Area'.
 
 ![png](../images/ames_notebook_files/ames_notebook_49_0.png)
 
-
-
-```python
-# converting to log
-df_dummies['Log Lot Area'] = df_dummies['Lot Area'].map(lambda x: np.log(x))
-df_dummies['Log 1st Flr SF'] = df_dummies['1st Flr SF'].map(lambda x: np.log(x))
-
-# dropping columns
-df_dummies.drop(['1st Flr SF','Lot Area'], axis=1, inplace=True)
-```
-
-Did the scores improve?
-
+Converting both to log scale and re-scoring models....
 
 ```python
 X = df_dummies.drop('SalePrice', axis=1)
@@ -352,7 +322,6 @@ y = df_dummies['SalePrice']
 
 X_train, X_test, y_train, y_test = train_test_split(X, y)
 ```
-
 
 ```python
 model_scores['scores_2'] = []
@@ -365,48 +334,33 @@ for m in models:
     print('')
 ```
 
-    rfr score:
+<br>
+
+Did the scores improve?
+
+    Random Forest Regressor RMSE:
     29002.6115943
     
-    svr score:
+    Support Vector Regressor RMSE:
     29052.4535218
     
-    ada score:
+    AdaBoost Regressor RMSE:
     28461.5800328
     
 
-
-### Graphically...
-
-
-```python
-# converting score data for graphing
-scores = pd.DataFrame(model_scores)
-scores = pd.melt(scores, id_vars='model', value_vars=['scores_1', 'scores_2'], value_name='RMSE_score', var_name='modeling round')
-```
-
-
-```python
-plt.figure(figsize=(12,7))
-plt.title(s='5x Cross-Validated RMSE', size=17)
-sns.barplot(data=scores, x='RMSE_score', y='model', hue='modeling round', palette=pal)
-plt.ylabel('')
-plt.xlabel('RMSE')
-plt.margins(0.2);
-```
+Marginal improvements in all models. (Remember that RMSE measures error, so we are trying to minimize the score.)
 
 
 ![png](../images/ames_notebook_files/ames_notebook_56_0.png)
 
+<br>
 
-Remember that RMSE measures error, so we are trying to minimize the score. Marginal improvements in all models.
-
-Instead of tweaking the data, let's see if tuning our models brings the score down across the board.
-
----
 
 # Modeling Tuning
-Running a few GridSearches to optimize our four models.
+---
+Instead of tweaking the data, let's see if tuning our models brings the score down across the board. Running a few GridSearches to optimize our three. models.
+
+<br>
 
 ### RandomForest
 Searching for best parameters across 'n_estimators', 'max_features' and 'min_samples_split'.
