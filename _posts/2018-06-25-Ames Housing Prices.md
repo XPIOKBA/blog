@@ -4,7 +4,7 @@ title: Housing Prices in Ames
 summary: Did you overpay for your house in Iowa? Find out!
 ---
 _[Git](https://github.com/afriedman412/ames)_  
-The Ames Housing data set was introduced in 2011 by Dean De Cock at Truman State University. It contains 2930 observations of 80 variables, divided more or less evenly among ordinal, nominal, continuous and discrete. With data from 2006-2010, De Cock intended to provide a contemporary alternative to the Boston Housing data set, which was compiled in the 70's.
+[The Ames Housing data set](http://www.amstat.org/publications/jse/v19n3/decock.pdf) was introduced in 2011 by Dean De Cock at Truman State University. It contains 2930 observations of 80 variables, divided more or less evenly among ordinal, nominal, continuous and discrete. With data from 2006-2010, De Cock intended to provide a contemporary alternative to the Boston Housing data set, which was compiled in the 70's.
 
 In this notebook, I will clean and explore the data, then briefly optimize a handful of regression models for predicting 'Sale Price'.
 
