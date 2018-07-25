@@ -175,122 +175,43 @@ df_dummies = pd.get_dummies(df)
 ---
 Some visualizations and observations about the data. (Sometimes looking at the pre-cleaning data as needed.)
 
-```python
-df.SalePrice.hist(color=pal[2], bins=25, ec='w', lw=2)
-plt.title(s='Sale Price Distribution');
-```
-
+'Sale Price' appear to be more or less normally distributed, with a mean somewhere around $150k.
 
 ![png](../images/ames_notebook_files/ames_notebook_28_0.png)
 
 
-
-```python
-d = df[['Neighborhood','SalePrice']].sort_values('SalePrice', ascending=False)
-
-plt.figure(figsize=(16,10))
-plt.title(s='Neighborhood v. Sale Price', size=17)
-plt.barh(data=d, y='Neighborhood', width='SalePrice', color=pal[2]);
-```
+'Sale Price' varies quite a bit by 'Neighborhood'.
 
 
 ![png](../images/ames_notebook_files/ames_notebook_29_0.png)
 
-
-
-```python
-d = df
-a = 0.4
-feats = ['Lot Area', 'House Age', 'Overall Cond']
-
-plt.figure(figsize=(16,5))
-plt.subplots_adjust(left=None, bottom=None, right=None, top=None,
-                wspace=.4, hspace=None)
-for n in range(3):
-    plt.subplot(1,3,n+1)
-    sns.regplot(data=d, x=feats[n],y='SalePrice', color=pal[n],
-               line_kws={'color':'black'}, scatter_kws={'alpha':a})
-    plt.xlabel(s=feats[n])
-    plt.ylabel(s='Sale Price ($)')
-    plt.xticks(rotation=45)
-```
-
+Correlation between 'Sale Price' and 'Lot Area' makes sense, as does an inverse correlation between 'Sale Price' and 'House Age'. Surprisingly, 'Overall Cond' and 'Sale Price' seem barely related.
 
 ![png](../images/ames_notebook_files/ames_notebook_30_0.png)
 
 
-Correlation between 'Sale Price' and 'Lot Area' makes sense, as does an inverse correlation between 'Sale Price' and' House Age'. Surprisingly, 'Overall Cond' and 'Sale Price' seem barely related.
-
-
-```python
-d = df
-a = 0.4
-feats = ['1st Flr SF', '2nd Flr SF', 'Garage Area']
-
-plt.figure(figsize=(16,5))
-plt.subplots_adjust(left=None, bottom=None, right=None, top=None,
-                wspace=.4, hspace=None)
-for n in range(3):
-    plt.subplot(1,3,n+1)
-#     plt.scatter(data=d, x=feats[n],y='SalePrice', color=pal[n])
-    sns.regplot(data=d, x=feats[n],y='SalePrice', color=pal[n],
-               line_kws={'color':'black'}, scatter_kws={'alpha':a})
-    plt.xlabel(s=feats[n])
-    plt.ylabel(s='Sale Price ($)')
-```
+'1st Fl SF' looks affected by some outliers. '2nd Flr SF' and 'Garage Area' both look affected by the zero values, presumably from houses with only one story or no garage.
 
 
 ![png](../images/ames_notebook_files/ames_notebook_32_0.png)
 
-
-'1st Fl SF' looks affected by some outliers. '2nd Flr SF' and 'Garage Area' both look affected by the zero values. 
-
-
-```python
-d = df[['SalePrice', '1st Flr SF', '2nd Flr SF', 'Garage Area']]
-a = 0.3
-
-plt.figure(figsize=(12,12))
-plt.subplots_adjust(left=None, bottom=None, right=None, top=None,
-                wspace=.4, hspace=None)
-
-plt.subplot(2,2,1)
-sns.regplot(data=d, x='2nd Flr SF', y='SalePrice', color=pal[1],
-           line_kws={'color':'black'}, scatter_kws={'alpha':a})
-plt.xlabel(s='2nd Flr SF')
-plt.ylabel(s='Sale Price ($)')
-
-plt.subplot(2,2,2)
-sns.regplot(data=d[d['2nd Flr SF'] >0], x='2nd Flr SF', y='SalePrice', color=pal[1],
-           line_kws={'color':'black'}, scatter_kws={'alpha':a})
-plt.xlabel(s='2nd Flr SF (Zero Values Removed)')
-plt.ylabel(s='Sale Price ($)')
-
-plt.subplot(2,2,3)
-sns.regplot(data=d, x='Garage Area', y='SalePrice', color=pal[2],
-           line_kws={'color':'black'}, scatter_kws={'alpha':a})
-plt.xlabel(s='Garage Area')
-plt.ylabel(s='Sale Price ($)')
-
-plt.subplot(2,2,4)
-sns.regplot(data=d[d['Garage Area'] >0], x='Garage Area', y='SalePrice', color=pal[2],
-           line_kws={'color':'black'}, scatter_kws={'alpha':a})
-plt.xlabel(s='Garage Area (Zero Values Removed)')
-plt.ylabel(s='Sale Price ($)');
-```
-
+'2nd Flr SF' and 'Garage Area' with the zero value removed.
 
 ![png](../images/ames_notebook_files/ames_notebook_34_0.png)
 
 
----
+<br>
+
 
 # Modeling and Predictions
+---
+Predicting 'Sale Price' using three different algorithms, all from Scikit Learn:
+- [Random Forest Regressor (from sci-kit learn)](http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html)
+- [AdaBoost Regressor](https://xgboost.readthedocs.io/en/latest/)
+- [Support Vector Regressor](http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html)
 
-Predicting housing price using three different algorithms.
 
 ### Creating a pipeline to combine standard scaling with the regressor
-
 
 ```python
 prf = Pipeline([
@@ -321,10 +242,9 @@ X_train, X_test, y_train, y_test = train_test_split(X, y)
 ```
 
 ### Initial scores
-Scoring with Root Mean Squared Error, as per the Kaggle competition.
+This project was originally done in the context of a Kaggle competition which used Root Mean Squared Error (RMSE) for scoring, so that is the metric I'm using here.
 
-The function 'RMSE_score' returns a 5x cross-validated RMSE for a given model.
-
+The function _RMSE_score_ returns a 5x cross-validated RMSE for a given model:
 
 ```python
 # creating a function to return 5x cross-validated RMSE
@@ -333,6 +253,7 @@ def RMSE_score(model, X, y, cv=5):
     return (np.mean(cross_val_score(prf, X_test, y_test, scoring='neg_mean_squared_error', cv=cv))*-1)**0.5
 ```
 
+Scoring all three models using _RMSE_score_...
 
 ```python
 models = [prf, psv, pad]
@@ -349,33 +270,23 @@ for m in models:
     print('')
 ```
 
-    rfr score:
+The first round of scores: 
+
+    Random Forest Regressor RMSE:
     29854.4777408
     
-    svr score:
+    Support Vector Regressor RMSE:
     29697.6673884
     
-    ada score:
+    AdaBoost Regressor RMSE:
     29424.7745198
     
 
-
-A graphical look...
-
-
-```python
-plt.figure(figsize=(12,5))
-plt.title(s='5x Cross-Validated RMSE', size=17)
-sns.barplot(data=model_scores, x='scores_1', y='model', palette=pal)
-plt.xlabel('Root Mean Squared Error')
-plt.margins(0.2);
-```
-
+A graphical look ... every model returns a score a shade below 30000.
 
 ![png](../images/ames_notebook_files/ames_notebook_45_0.png)
 
 
-Every model returns a score a shade below 30000.
 
 ### Improving the data?
 Looking at the scatter plots above, a couple of the features look like they could benefit from converting to a log scale.
