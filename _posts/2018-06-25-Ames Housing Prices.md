@@ -8,47 +8,10 @@ The Ames Housing data set was introduced in 2011 by Dean De Cock at Truman State
 
 In this notebook, I will clean and explore the data, then briefly optimize a handful of regression models for predicting 'Sale Price'.
 
----
-
-### Import Packages
-
-
-```python
-import numpy as np
-import scipy.stats as stats
-import seaborn as sns
-import matplotlib.pyplot as plt
-import pandas as pd
-import random
-
-from sklearn import metrics
-from sklearn.metrics import make_scorer
-from sklearn.preprocessing import PolynomialFeatures
-from sklearn.preprocessing import StandardScaler
-from sklearn.feature_selection import VarianceThreshold
-from sklearn.pipeline import Pipeline
-from sklearn.model_selection import GridSearchCV
-
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.svm import SVR
-from sklearn.neighbors import KNeighborsRegressor
-from sklearn.ensemble import AdaBoostRegressor
-
-from sklearn.model_selection import KFold, cross_val_score, cross_val_predict
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error
-
-pal = sns.color_palette("pastel").as_hex()
-
-random.seed(10)
-
-%matplotlib inline
-```
-
----
+<br>
 
 # Cleaning the Data
-
+---
 
 ```python
 # importing the training data
@@ -147,122 +110,27 @@ for c in df.columns:
 pd.DataFrame(nulls)
 ```
 
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>col</th>
-      <th>null</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Lot Frontage</td>
-      <td>330</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Alley</td>
-      <td>1911</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Mas Vnr Type</td>
-      <td>22</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Mas Vnr Area</td>
-      <td>22</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Bsmt Exposure</td>
-      <td>58</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>BsmtFin Type 1</td>
-      <td>55</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>BsmtFin SF 1</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>BsmtFin Type 2</td>
-      <td>56</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>BsmtFin SF 2</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>Bsmt Unf SF</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>Total Bsmt SF</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>Bsmt Full Bath</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Bsmt Half Bath</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>Garage Type</td>
-      <td>114</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>Fence</td>
-      <td>1651</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>Misc Feature</td>
-      <td>1986</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>Garage Age</td>
-      <td>114</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+<center>
+| features | # of null values |
+|---|---|
+Lot Frontage | 330
+Alley | 1911
+Mas Vnr Type | 22
+Mas Vnr Area | 22
+Bsmt Exposure | 58
+BsmtFin Type 1 | 55
+BsmtFin SF 1 | 1
+BsmtFin Type 2 | 56
+BsmtFin SF 2 | 1
+Bsmt Unf SF | 1
+Total Bsmt SF | 1
+Bsmt Full Bath | 2
+Bsmt Half Bath | 2
+Garage Type | 114
+Fence | 1651
+Misc Feature | 1986
+Garage Age | 114
+</center>
 
 Given that we only have 2051 rows, dropping 'Alley', 'Fence' and 'Misc Feature'
 
