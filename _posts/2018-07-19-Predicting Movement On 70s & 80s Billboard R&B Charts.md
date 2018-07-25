@@ -17,6 +17,7 @@ Negative movement 'down' the chart is good, while positive movement 'up' the cha
 
 (So for example,  an album that moves from #6 to #2 has moved four places 'down' the chart, and its movement is -4.)
 
+<p></p>
 
 # Data Exploration
 ---
@@ -62,15 +63,16 @@ An album moving in one direction tends to stay moving in that direction. As show
 
 But while previous movement is a fairly good predictor of where an album will go next, it's not perfect. As shown below, previous movement only predicts next movement about half the time.
 
-    % Identical Motion from Week -2 to Week -1 and Week -1 to Current Week:
-    0.497785372999
-    
-    % Identical Motion from Week -1 to Current Week: and Current Week to Next Week
-    0.539880724026
-    
-    Average % Identical Motion in Consecutive Weeks
-    0.518833048513
+% Identical Motion from Week -2 to Week -1 and Week -1 to Current Week:
+0.497785372999
 
+% Identical Motion from Week -1 to Current Week: and Current Week to Next Week
+0.539880724026
+
+Average % Identical Motion in Consecutive Weeks
+0.518833048513
+
+<p></p>
 
 # Features
 ---
@@ -100,7 +102,7 @@ The peak chart position of an artist's last album depresses its chance of moveme
 
 ![png](../images/capstone_w_charts_files/capstone_w_charts_34_0.png)
 
-
+<p></p>
 
 # Modeling
 ---
@@ -142,7 +144,7 @@ Models used the following features:
 
 Upward chart movement makes up about 40% of the target class. That is our baseline accuracy for classification.
 
-
+<p></p>
 
 #Results
 ---
@@ -176,6 +178,7 @@ On the other hand, the model predicts movement direction fairly well when only g
 
 ![png](../images/capstone_w_charts_files/capstone_w_charts_50_0.png)
 
+<p></p>
 
 # Interpretation
 ---
