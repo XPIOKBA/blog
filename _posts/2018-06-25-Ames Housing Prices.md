@@ -108,7 +108,7 @@ for c in df.columns:
 pd.DataFrame(nulls)
 ```
 
-| features | # of null values |
+| **Feature** | **# of Null Values** |
 | :---: | :---: |
 | Lot Frontage | 330 |
 | Alley | 1911 |
