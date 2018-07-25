@@ -110,9 +110,8 @@ for c in df.columns:
 pd.DataFrame(nulls)
 ```
 
-<center>
 | features | # of null values |
-|---|---|
+| --- | --- |
 | Lot Frontage | 330 |
 | Alley | 1911 |
 | Mas Vnr Type | 22 |
@@ -130,7 +129,6 @@ pd.DataFrame(nulls)
 | Fence | 1651 |
 | Misc Feature | 1986 |
 | Garage Age | 114 |
-</center>
 
 Given that we only have 2051 rows, dropping 'Alley', 'Fence' and 'Misc Feature'
 
