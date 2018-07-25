@@ -12,7 +12,7 @@ A side note: In the press conference announcing Rosfeld's indictment, a reporter
 
 Rosfeld's journey to East Pittsburgh via questionable departure from his last gig made me wonder if the sheer number of police departments in America could contribute to systematic abuse. (Similar questions about the balkanization of suburban St. Louis police came up in the aftermath of Ferguson as well.) So I decided to find a way to map America's police departments.
 
-
+<br>
 
 # Gathering the data
 ---
@@ -31,13 +31,13 @@ Here's the percentage of the census population covered by the PoliceOne departme
 
 ![png](../images/mapping_the_police_files/mapping_the_police_19_0.png)
 
-
+<br>
 
 # Loading coordinates for mapping
 ---
 I used [GeoPy](https://geopy.readthedocs.io/en/stable/) to find approximate longitude and latitude for every police department. GeoPy can pull coordinates from search terms, so I fed it every PD's name and state with common words like 'Police' and 'Department' stripped out.
 
-
+<br>
 
 # Mapping the departments
 ---
@@ -60,7 +60,7 @@ And finally, I set the size and color of each point to a scale set by log2 of th
 
 ![png](../images/mapping_the_police_files/mapping_the_police_35_0.png)
 
-
+<br>
 
 # Conclusion and next steps
 ---
