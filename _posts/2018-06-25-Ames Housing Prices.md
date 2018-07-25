@@ -113,27 +113,26 @@ pd.DataFrame(nulls)
 <center>
 | features | # of null values |
 |---|---|
-Lot Frontage | 330
-Alley | 1911
-Mas Vnr Type | 22
-Mas Vnr Area | 22
-Bsmt Exposure | 58
-BsmtFin Type 1 | 55
-BsmtFin SF 1 | 1
-BsmtFin Type 2 | 56
-BsmtFin SF 2 | 1
-Bsmt Unf SF | 1
-Total Bsmt SF | 1
-Bsmt Full Bath | 2
-Bsmt Half Bath | 2
-Garage Type | 114
-Fence | 1651
-Misc Feature | 1986
-Garage Age | 114
+| Lot Frontage | 330 |
+| Alley | 1911 |
+| Mas Vnr Type | 22 |
+| Mas Vnr Area | 22 |
+| Bsmt Exposure | 58 |
+| BsmtFin Type 1 | 55 |
+| BsmtFin SF 1 | 1 |
+| BsmtFin Type 2 | 56 |
+| BsmtFin SF 2 | 1 |
+| Bsmt Unf SF | 1 |
+| Total Bsmt SF | 1 |
+| Bsmt Full Bath | 2 |
+| Bsmt Half Bath | 2 |
+| Garage Type | 114 |
+| Fence | 1651 |
+| Misc Feature | 1986 |
+| Garage Age | 114 |
 </center>
 
 Given that we only have 2051 rows, dropping 'Alley', 'Fence' and 'Misc Feature'
-
 
 ```python
 df.drop(['Alley', 'Fence', 'Misc Feature'], axis=1, inplace=True)
@@ -141,13 +140,11 @@ df.drop(['Alley', 'Fence', 'Misc Feature'], axis=1, inplace=True)
 
 Filling in missing 'Garage Age' values with same from 'House Age'.
 
-
 ```python
 df['Garage Age'].fillna(df['House Age'], inplace=True)
 ```
 
 Imputing missing values for remaining features with column means for numericals and 'Unknown' for categoricals.
-
 
 ```python
 # recalculating null columns
@@ -168,17 +165,17 @@ for c in nulls['col']:
 ### Dummy columns
 Convert unordered categorical features to numerical by making dummy columns
 
-
 ```python
 df_dummies = pd.get_dummies(df)
 ```
 
----
+
+<br>
+
 
 # Exploring the Data
-
+---
 Some visualizations and observations about the data. (Sometimes looking at the pre-cleaning data as needed.)
-
 
 ```python
 df.SalePrice.hist(color=pal[2], bins=25, ec='w', lw=2)
