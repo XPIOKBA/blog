@@ -9,6 +9,7 @@ Data scientist, ex-biologist, occasional writer and DJ. Trying to make sense of 
 ### More Information
 
 [linkedin](https://www.linkedin.com/in/afriedman412/)  
+[github](https://github.com/afriedman412)  
 [tweets](https://twitter.com/skinny412)  
 [IG](https://instagram.com/skinny412)  
 [a lot of my writing](http://www.factmag.com/author/andrew-friedman/)  
