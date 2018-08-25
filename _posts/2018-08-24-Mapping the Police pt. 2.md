@@ -1,5 +1,9 @@
-
-# Mapping America's Police Departments, Pt. 2
+---
+layout: post
+title: Mapping the Police, pt .2
+summary: Police department sizes and population in Allegheny County, PA
+---
+_[Git](https://github.com/afriedman412/police_mapping_ag_county)_ 
 This is the second entry in an ongoing series of posts on the scope of policing in the USA. [The first entry](https://afriedman412.github.io/Mapping-the-Police-v1.0/) explained my motivation for this research, and made pretty basic national survey of America's police departments using data scraped from the website [PoliceOne](http://www.policeone.com).
 
 The data on PoliceOne is self-reported, incomplete, and unverified, and limited the utility of the first pass. I knew for whatever next step I took, I would have to dig for more accurate information. So I decided to limit my search to Allegheny County, Pennsylvania, which includes Pittsburgh.
@@ -14,19 +18,19 @@ These numbers are still incomplete (missing about 8 of the 130 departments liste
 # Data exploration
 We start with a look at population distribution across the county. Not surprisingly, the city of Pittsburgh is by far the largest municipality (population 300k, almost ten times larger than Penn Hills, at a population of roughly 41k). This map uses the log of the 2017 population estimate to allow for better visualization.
 
-![png](technical%20notebook_files/technical%20notebook_23_0.png)
+![png](images/images/technical%20notebook_files/technical%20notebook_23_0.png)
 
 A geographical plot of 'log officers per 1k' gives a qualitative look at levels of policing compare across the county. Again, using 'log' instead of the raw numbers to better visualize a data set with some heavy outliers.
 
-![png](technical%20notebook_files/technical%20notebook_27_0.png)
+![png](images/technical%20notebook_files/technical%20notebook_27_0.png)
 
 This plot shows the relationship between the population and the size of a police force. Not surprisingly, as one grows, so does the other. 
 
-![png](technical%20notebook_files/technical%20notebook_29_0.png)
+![png](images/technical%20notebook_files/technical%20notebook_29_0.png)
 
 It's a little more interesting look at the relationship between the population and the ratio of the number of officers in a department to the number of people in its jurisdiction. Here we see the log of the 2017 population estimate ('log pop 2017') and the log of the ratio of officers to 1000 people ('log officers per 1k'). As the population grows, the relative size of its police force shrinks.
 
-![png](technical%20notebook_files/technical%20notebook_31_0.png)
+![png](images/technical%20notebook_files/technical%20notebook_31_0.png)
 
 It's easy to come up with guesses as to why this is the case. For example, a larger population is likely to be more dense, allowing police to work more efficiently. Also, this ratio is increasingly unstable for smaller departments: a difference of one officer has a much larger impact on a 5-person department than one with 20 or more people. (This is especially worth noting given the questions about the accuracy of the department size data).
 
@@ -34,7 +38,7 @@ Given a reasonably predictable relationship between population and the ratio of 
 
 We visualize this with a residual plot.
 
-![png](technical%20notebook_files/technical%20notebook_33_0.png)
+![png](images/technical%20notebook_files/technical%20notebook_33_0.png)
 
 By running a simple linear regression, we can more effectively dig into this data. The 'residual' column is the measured deviation, while 'abs residual' is the absolute value of the deviation.
 
