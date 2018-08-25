@@ -3,12 +3,13 @@ layout: post
 title: Mapping the Police, pt .2
 summary: Police department sizes and population in Allegheny County, PA
 ---
-_[Git](https://github.com/afriedman412/police_mapping_ag_county)_ 
+_[Git](https://github.com/afriedman412/police_mapping_ag_county)_   
 This is the second entry in an ongoing series of posts on the scope of policing in the USA. [The first entry](https://afriedman412.github.io/Mapping-the-Police-v1.0/) explained my motivation for this research, and made pretty basic national survey of America's police departments using data scraped from the website [PoliceOne](http://www.policeone.com).
 
 The data on PoliceOne is self-reported, incomplete, and unverified, and limited the utility of the first pass. I knew for whatever next step I took, I would have to dig for more accurate information. So I decided to limit my search to Allegheny County, Pennsylvania, which includes Pittsburgh.
 
 # Gathering the data
+---
 The shapefiles for the municipalities in Allegheny County were all available from the [Western Pennsylvania Regional Data Center](https://data.wprdc.org/dataset/allegheny-county-municipal-boundaries). 2017 population estimates are from the [Census Bureau](https://factfinder.census.gov/faces/nav/jsf/pages/index.xhtml).
 
 The [Allegheny County website](http://www.alleghenycounty.us/emergency-services/police-departments.aspx) has a decent directory of its police departments and their jurisdictions. However, information on the size of these departments was harder to come by, let alone data from the police themselves. Some listed their staff on local websites, although the design of the sites raises questions about how recent that information might be. I used newspaper articles and PoliceOne to fill in what was missing. 
@@ -16,9 +17,10 @@ The [Allegheny County website](http://www.alleghenycounty.us/emergency-services/
 These numbers are still incomplete (missing about 8 of the 130 departments listed), and I wouldn't vouch for the total accuracy of the officer counts. But I'm confident they are reasonable ballpark estimates.
 
 # Data exploration
+---
 We start with a look at population distribution across the county. Not surprisingly, the city of Pittsburgh is by far the largest municipality (population 300k, almost ten times larger than Penn Hills, at a population of roughly 41k). This map uses the log of the 2017 population estimate to allow for better visualization.
 
-![png](images/images/technical%20notebook_files/technical%20notebook_23_0.png)
+![png](images/technical%20notebook_files/technical%20notebook_23_0.png)
 
 A geographical plot of 'log officers per 1k' gives a qualitative look at levels of policing compare across the county. Again, using 'log' instead of the raw numbers to better visualize a data set with some heavy outliers.
 
@@ -249,8 +251,8 @@ Since we are doing all this analysis with a larger eye towards the effects of de
 
 Compared to the largest deviations in the first chart of over 0.32, these values follow established trends.
 
-## Conclusion and next steps
-
+## Conclusion and next ste
+---
 There is not much to be concluded from this basic analysis of population and policing in and of itself. It's impossible to make reasonable statements about how many police any area needs without considering data on criminal activity in the area or how much of the municipal budget goes to public safety.
 
 For example: Wilkinsburg is ostensibly "overpoliced" in terms of how many officers we would expect it to have given its population. As an anecdotally high crime area, it might make sense to have a larger police force (if we ignore, for the moment, questions about whether more police actually reduce crime). This, in turn, is complicated by its budget problems. A high crime area may have a need for more police, but a more pressing need to spend its money elsewhere.
