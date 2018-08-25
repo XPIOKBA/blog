@@ -4,7 +4,7 @@ title: Mapping the Police, pt .2
 summary: Police department sizes and population in Allegheny County, PA
 ---
 _[Git](https://github.com/afriedman412/police_mapping_ag_county)_   
-This is the second entry in an ongoing series of posts on the scope of policing in the USA. [The first entry](https://afriedman412.github.io/Mapping-the-Police-v1.0/) explained my motivation for this research, and made pretty basic national survey of America's police departments using data scraped from the website [PoliceOne](http://www.policeone.com).
+This is the second entry in an ongoing series of posts on the scope of policing in the USA. [The first entry](https://afriedman412.github.io/Mapping-the-Police-v1.0/) explained my motivation for this research, and made a pretty basic national survey of America's police departments using data scraped from the website [PoliceOne](http://www.policeone.com).
 
 The data on PoliceOne is self-reported, incomplete, and unverified, and limited the utility of the first pass. I knew for whatever next step I took, I would have to dig for more accurate information. So I decided to limit my search to Allegheny County, Pennsylvania, which includes Pittsburgh.
 
