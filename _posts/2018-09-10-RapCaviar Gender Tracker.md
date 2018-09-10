@@ -4,7 +4,7 @@ title: Rap Caviar Gender Tracker
 summary: Automatically watching the gender balance on an influential Spotify playlist.
 ---
 _[Git](https://github.com/afriedman412/rcg_full)_   
-<h2><a href="https://rcg-live.appspot.com/">RAP CAVIAR GENDER TRACKER</a></h2>   
+<h2><a href="https://rcg-live.appspot.com/">CLICK HERE TO SEE THE RAP CAVIAR GENDER TRACKER</a></h2>   
 Streaming music is the dominant form of music consumption in the modern era. Fans can listen to almost anything they want anywhere they have an internet connection (or not, given many platforms' options to download songs to stream while offline). The economics of this model are still in flux: another round of negotiations between labels and streaming services looms, and artists frequently vent about paltry payouts. But it seems unlikely that purchasing to download or physical media will take the power back any time in the near future.   
 
 This isn't anything new, but an underappreciated aspect of streaming dominance is the extent to which playlists now fill the role which radio once did. While anyone can theoretically stream anything whenever, people don't actually want unlimited options. Music is as much about community and shared experiences as it is the art itself, and that means knowing what songs are coming out of people's cars, what tracks get rewinds from popular DJ's, etc. Popular playlists increasingly play a simlar role.   
