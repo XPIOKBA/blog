@@ -26,12 +26,12 @@ Keep reading for technical details.
 # How it works
 ---
 <ol>
-	<li>Using the [Spotipy](https://spotipy.readthedocs.io/en/latest/) wrapper, download the latest RapCaviar tracklist.</li>
+	<li>Using the <a href="https://spotipy.readthedocs.io/en/latest/">Spotipy</a> wrapper, download the latest RapCaviar tracklist.</li>
 	<li>Create a list of artists and pull any featured artists from the track names.</li>
 	<li>Split known groups into their individual artists.</li>
 	<li>Iterate through artists to find unfamiliar names.</li>
-	<li>Determine whether any new names are groups, and if so, pull their members from [AllMusic](http://allmusic.com).</li>
-	<li>Count the number of gendered pronouns in the [AllMusic](http://allmusic.com) bios of unknown names to determine gender.</li>
+	<li>Determine whether any new names are groups, and if so, pull their members from <a href="http://allmusic.com">AllMusic</a>.</li>
+	<li>Count the number of gendered pronouns in the <a href="http://allmusic.com">AllMusic</a> bios of unknown names to determine gender.</li>
 	<li>Tally up the number of artists of each gender and record data.</li>
 </ol>
 
@@ -39,24 +39,24 @@ Keep reading for technical details.
 
 # FAQ
 ---
-<strong>How'd you do that?</strong>
+<strong>How'd you do that?</strong>  
 This is a [Django](https://www.djangoproject.com/) app written in Python, with the help of [this really rad Django tutorial](https://docs.djangoproject.com/en/2.1/intro/tutorial01/), deployed on the Google Cloud Flex App Engine with the help of [this really rad tutorial](https://codeburst.io/beginners-guide-to-deploying-a-django-postgresql-project-on-google-cloud-s-flexible-app-engine-e3357b601b91).  
 
 It uses [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/) for web scraping, [Spotipy](https://spotipy.readthedocs.io/en/latest/) for accessing Spotify data, and [Unidecode](https://pypi.org/project/Unidecode/) for parsing stylized names.
 
 <br>
 
-<strong>Are you keeping the data to track patterns?</strong>
+<strong>Are you keeping the data to track patterns?</strong>  
 Yes I am. But at the moment, I feel like the numbers speak for themselves and when something changes it will be notable.  
 
 I haven't gone back to find old RapCaviar playlists either (although I'm sure they are out there), but this has been a running topic for a minute, which inspired me to make the app in the first place.
 
 <br>
 
-<strong>Why do you think Spotify is obligated to have gender balanced playlists?</strong>
+<strong>Why do you think Spotify is obligated to have gender balanced playlists?</strong>  
 I don't think they are obligated to do shit but I do think they like money. It's straight up bad business to ignore a sustained movement in the genre they are ostensibly curating.
 
 <br>
 
-<strong>Women aren't good at rapping though!</strong>
+<strong>Women aren't good at rapping though!</strong>  
 Ur a bum.
