@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Ideal Mixtape Length
+title: Mixtape Length in the Digital Era
 summary: How long should your mixtape be?
 ---
 How long should a rap mixtape be? It's a long-standing question, and one whose answer has swung wildly throughout the years. When physical media and radio ruled, it was simple: You were limited by concrete things like the length of blank tapes or your radio slot. Your selections had to fill two 30 or 45 minute sides, or an hour or two of air time, and that was that. But starting in the late 90's, things changed. Whether it was because rap became a more reliable hustle or because the price of recording and distribution dropped, the importance of, uh, non-album content increased exponentially.
