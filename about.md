@@ -13,7 +13,7 @@ Data scientist, ex-biologist, occasional writer and DJ. Trying to make sense of 
 [tweets](https://twitter.com/skinny412)  
 [IG](https://instagram.com/skinny412)  
 [a lot of my writing](http://www.factmag.com/author/andrew-friedman/)  
-[mixes and remixes](https://soundcloud.com/skinny412)
+[mixes and remixes](https://www.mixcloud.com/skinny412/)
 
 ### Contact me
 
