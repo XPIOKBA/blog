@@ -10,7 +10,9 @@ Before the rise of digital music, artists who wanted to be heard basically had t
 
 The lower bar for recording and releasing predictably led to more music, especially if people were buying. With mixtapes were going for $10 a pop, it made sense to test the limits of demand. So while official albums were still on a reasonable ~12-month cycle, things moved much faster at street level. The internet only pushed things further. CD's were still limited to 80-minutes, but DatPiff was less stringent. There was no reason for Gucci Mane to not put out three mixtapes in one day, or for Lil B to have 100+ MySpace accounts, each with 8 unique tracks, or for Gorilla Zoe to put out a tape every day for the entire month of February 2010.
 
-![you wasnt there!](../images/mixtape_length_files/mmmr.jpg "this was the best") 
+<center>
+![you wasnt there!](../images/mixtape_length_files/mmmr.jpg "this was the best")
+</center>
 
 Things have evened out somewhat since then, I think. There is still entirely too much music, but I feel like there's also been a cross-cultural realization that "music" is just "content", and diversification of content is crucial for a modern celebrity. Maybe instead of 25 tracks a month, do 12 tracks evey two months and be funny on IG. Or, in the extreme, get famous for something unrelated to rapping and then record your first song. But long-as-hell tapes no longer seem the norm, and seem no less common than self-proclaimed EP's of 6 to 10 songs.
 
