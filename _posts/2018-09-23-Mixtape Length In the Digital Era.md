@@ -3,6 +3,7 @@ layout: post
 title: Mixtape Length in the Digital Era
 summary: How long should your mixtape be?
 ---
+_[Git](https://github.com/afriedman412/mixtape_length)_   
 How long should a rap mixtape be? It's a long-standing question, and one whose answer has swung wildly throughout the years. When physical media and radio ruled, it was simple: You were limited by concrete things like the length of blank tapes or your radio slot. Your selections had to fill two 30 or 45 minute sides, or an hour or two of air time, and that was that. But starting in the late 90's, things changed. Whether it was because rap became a more reliable hustle or because the price of recording and distribution dropped, the importance of, uh, non-album content increased exponentially.
 
 Before the rise of digital music, artists who wanted to be heard basically had to either press up expensive vinyl, or physically show up and rap on the air. The ability to burn a session to CD and have it in circulation the next day opened up all kinds of new possibilities. You could do a whole CD of you rapping over whatever was hot every week if you wanted. If you had a buzz, you could do a whole tape with your crew without worrying about spreading your resources too thin. (DJ's, for their part, suddenly had new ways to leverage and monetize their connections.)
@@ -19,7 +20,7 @@ I'm making no distinction between a "mixtape", and "album", a "project", an "EP"
 I used YouTube data because, frankly, it was the most readily available.
 
 ## Gathering the data
-I created a list of 133 projects from 74 different rappers. Drawing from the aritst's official YouTube pages (or, in a handful of cases, [DatPiff](https://www.youtube.com/channel/UC2SfCLE_jQgPwXQCWqwVIEw)), I then pulled the YouTube playlist ID for every project. With that ID, I used the YouTube API and [apiclient](https://pypi.org/project/apiclient/) to extract play counts for every track.
+[I created a list of 133 projects from 74 different rappers](https://github.com/afriedman412/mixtape_length/blob/master/mixtape_links.csv). Drawing from the aritst's official YouTube pages (or, in a handful of cases, [DatPiff](https://www.youtube.com/channel/UC2SfCLE_jQgPwXQCWqwVIEw)), I then pulled the YouTube playlist ID for every project. With that ID, I used the YouTube API and [apiclient](https://pypi.org/project/apiclient/) to extract play counts for every track.
 
 ## Processing and feature engineering
 
