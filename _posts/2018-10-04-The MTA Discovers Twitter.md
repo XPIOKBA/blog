@@ -16,7 +16,7 @@ I used [GetOldTweets](https://github.com/Jefferson-Henrique/GetOldTweets-python)
 ## Detecting patterns
 Given the context of the MTA's changing approach to social media, I decided to look for changes in syntax before and after January 1, 2018, which is more or less when the MTA changed its approach to Twitter. So I tracked the appearance of every word in the tweet vocabulary over time.
 
-This is a plot of the 9 word the MTA tweeted the most over the entire date range. Every orange dot represents a day, and the vertical line is January 1, 2018.
+This is a plot of the 9 words the MTA tweeted the most over the entire date range. Every orange dot represents a day, and the vertical line is January 1, 2018.
 
 ![all dates](../images/brakes/all_dates.png "all dates")
 
@@ -31,7 +31,7 @@ And here's March 2018.
 ![march 1 2018](../images/brakes/3118.png "march 1 2018")
 
 ## Applying the research
-A little while later, Aaron had a hunch that service alerts about emergency breaks had increased. On June 28th, [the MTA noted](https://twitter.com/NYCTSubway/status/1012343209295536128) that they had a new policy to explicity mention when a train's emergency breaks were set off, as opposed to calling such incidents "mechanical problems". So he hit me up to look into it.
+A little while later, Aaron had a hunch that service alerts about emergency brakes had increased. On June 28th, [the MTA noted](https://twitter.com/NYCTSubway/status/1012343209295536128) that they had a new policy to explicity mention when a train's emergency brakes were set off, as opposed to calling such incidents "mechanical problems". So he hit me up to look into it.
 
 Sure enough, there was a dramatic shift in the way the MTA described these problems. At the start of 2017, it's "due to a train with mechanical problems". In October 2018, it changes to "because of ..." for some reason. And then, in June of 2018, use of "mechanical problems" drops off, replaced almost entirely with specific mentions of "brakes" and some form of "activation".
 
