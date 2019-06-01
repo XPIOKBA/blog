@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-Data scientist, ex-biologist, occasional writer and DJ. Trying to make sense of it all.
+Data scientist (at [Chatdesk](http://chatdesk.com)), ex-biologist, occasional writer and DJ. Data extraction specialist. Trying to make sense of it all.
 
 ### More Information
 
