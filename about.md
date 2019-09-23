@@ -15,4 +15,4 @@ A place to include any other types of information that you'd like to include abo
 [email@domain.com](mailto:email@domain.com)
 
 <br><br><br>
-![logo.svg]({{ site.baseurl }}/images/лягушка крупно.svg)
+![logo.svg]({{ site.baseurl }}/images/лягушка крупно.png)
