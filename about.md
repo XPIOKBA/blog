@@ -1,6 +1,6 @@
 ---
 layout: page
-title: About
+title: About 🐸
 permalink: /about/
 ---
 
@@ -13,3 +13,6 @@ A place to include any other types of information that you'd like to include abo
 ### Contact me
 
 [email@domain.com](mailto:email@domain.com)
+
+<br><br><br>
+![logo.svg]({{ site.baseurl }}/images/лягушка крупно.svg)
