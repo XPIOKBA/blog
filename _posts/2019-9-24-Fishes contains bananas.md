@@ -1,8 +1,9 @@
 ---
 layout: post
-title: 🐟 ... (and 🍌 bananas contains fishes).
+title: 🐟 Fishes contains bananas... (and 🍌 bananas contains fishes).
 ---
-fish 🐠 '<->' 🍌 bananas
+
+fish 🐠 <-> 🍌 bananas
 
 [I Like Fish - Bananas In Pyjamas](https://s02vla.storage.yandex.net/get-mp3/054b9ba8c6a3208605cad5bf983e8d5a/00059350031a5022/rmusic/U2FsdGVkX1_Js8b2gU9pk_v35HWkCbxZ8O8624-aW6EqVvRl84trYY1uAZr6SQw9AbPZx3NHmvQAc3VWx28U6hvn-5Lxto1rJyIcR_ltNEg/f2390b8b66203f11678c22ea1e9b1ac4a4807cbec1d29fc78e683db455c61948?track-id=36057281&play=false)
 
