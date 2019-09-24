@@ -1,7 +1,9 @@
 ---
 layout: post
-title: 🐟 Fishes contains bananas... (and 🍌 bananas contains fishes).
+title: 🐟 Fishes contains bananas...
 ---
+
+(and 🍌 bananas contains fishes).
 
 fish 🐠 <=> 🍌 bananas
 
