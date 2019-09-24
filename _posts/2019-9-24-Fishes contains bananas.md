@@ -6,6 +6,7 @@ title: 🐟 Fishes contains bananas...
 (and 🍌 bananas contains fishes).
 
 ```
+FishScript
 fish 🐠 <=> 🍌 bananas
 ```
 
