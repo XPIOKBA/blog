@@ -44,7 +44,7 @@ float: left;width: 70px;height: 70px;display: inline;margin-right: 15px;margin: 
   <body>
       <header>
            <img class="primer2" src="{{ site.avatar }}" />
-	<h1 style="margin-left: -70px">{{ site.name | default: site.title }}</h1>
+	<h1 style="margin-left: -70px;display: inline;">{{ site.name | default: site.title }}</h1>
         <p>{{ page.description | default: site.description | default: site.github.project_tagline }}</p>
 
       </header>
