@@ -35,6 +35,27 @@ float: left;width: 70px;height: 70px;display: inline;margin-right: 15px;margin: 
 	-o-transition: all 0.5s linear;
 	-moz-transition: all 0.5s linear;
 	}
+
+	.zag{
+display: inline;margin-left: -170px;
+	transition: all 1s linear; 
+	-webkit-transition: all 0.5s linear;
+	-o-transition: all 0.5s linear;
+	-moz-transition: all 0.5s linear;
+	}
+	.zag:hover{
+display: inline;margin-left: -70px;
+	-ms-transform: scale(1.2);
+	-webkit-transform: scale(1.2);
+	-o-transform: scale(1.2);
+	-moz-transform: scale(1.2);
+	transform: scale(1.2);
+	transition: all 0.5s linear;
+	-webkit-transition: all 0.5s linear;
+	-o-transition: all 0.5s linear;
+	-moz-transition: all 0.5s linear;
+	}
+	
 </style>
 
 
@@ -44,8 +65,8 @@ float: left;width: 70px;height: 70px;display: inline;margin-right: 15px;margin: 
   <body>
       <header>
            <img class="primer2" src="{{ site.avatar }}" />
-	<h1 class="primer2" style="margin-left: -70px;display: inline;">{{ site.name | default: site.title }}</h1>
-        <p  style="display: inline;">{{ page.description | default: site.description | default: site.github.project_tagline }}</p>
+	<h1 class="zag">{{ site.name | default: site.title }}</h1>
+        <p  class="zag">{{ page.description | default: site.description | default: site.github.project_tagline }}</p>
 
       </header>
 
