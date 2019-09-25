@@ -17,14 +17,14 @@
 
 <style>
 	.primer2{
-float: left;width: 70px;height: 70px;display: inline;
+float: left;width: 70px;height: 70px;display: inline;margin-right: 15px;margin: 0 auto;border-radius: 20px;
 	transition: all 1s linear; 
 	-webkit-transition: all 0.5s linear;
 	-o-transition: all 0.5s linear;
 	-moz-transition: all 0.5s linear;
 	}
 	.primer2:hover{
-float: right;width: 70px;height: 70px;display: inline;
+float: left;width: 70px;height: 70px;display: inline;margin-right: 15px;margin: 0 auto;border-radius: 0px;
 	-ms-transform: scale(1.2);
 	-webkit-transform: scale(1.2);
 	-o-transform: scale(1.2);
@@ -46,7 +46,7 @@ float: right;width: 70px;height: 70px;display: inline;
 <div class="primer2">
 <!--        <img style="float: left;width: 70px;height: 70px;margin-right: 15px;display: inline;margin: 0 auto;border-radius: 20px;" src="{{ site.avatar }}" />
 -->
-           <img style="width: 70px;height: 70px;margin-right: 15px;margin: 0 auto;border-radius: 20px;" src="{{ site.avatar }}" />
+           <img class="primer2" src="{{ site.avatar }}" />
 
 </div>
 	<h1>{{ site.name | default: site.title }}</h1>
